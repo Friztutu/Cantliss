@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 onlinestore/secret_key.py
 .idea/
+users/migrations/
