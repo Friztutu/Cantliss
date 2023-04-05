@@ -127,5 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-Store/secret_key.py
+onlinestore/secret_key.py
 .idea/
