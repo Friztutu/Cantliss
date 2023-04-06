@@ -1,0 +1,21 @@
+.nav-item li {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.navbar-brand {
+  font-size: 25px;
+  color: white;
+}
+
+.shop_url {
+  color: gainsboro;
+}
+
+body {
+  background: url("../img/main.jpg") no-repeat center top fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
