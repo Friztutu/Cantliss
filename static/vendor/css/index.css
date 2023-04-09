@@ -1,0 +1,28 @@
+body {
+  background: linear-gradient(180deg, #fa8a93 27%, #fff 100%) no-repeat;
+}
+
+section {
+  padding-inline: 5em;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text {
+  padding-top: 5em;
+}
+
+.button {
+  text-align: center;
+  padding: 0.5em;
+}
+
+.button:hover {
+  background-color: rgb(244, 199, 199);
+}
+.button > a {
+  text-decoration: none;
+}

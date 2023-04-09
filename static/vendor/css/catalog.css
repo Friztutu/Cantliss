@@ -1,0 +1,49 @@
+body {
+  background: linear-gradient(180deg, #fa8a93 27%, #fff 100%) no-repeat;
+}
+
+section {
+  padding-inline: 0 !important;
+}
+
+.d-block {
+  width: 1749px;
+  height: 393px;
+}
+
+.slide-text {
+  font-size: 2em;
+  color: rgb(126, 255, 143);
+}
+
+.container {
+  padding-top: 3em;
+}
+
+.card-img-top {
+  width: 286px;
+  height: 161px;
+}
+
+.card {
+  margin-bottom: 2em;
+  border-style: solid;
+  border-width: 0.5px;
+}
+
+.grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-left {
+  padding-top: 3em;
+}
+
+.list-group-item {
+  width: 200px;
+}
+
+.list-group-item:hover {
+  background-color: azure;
+}

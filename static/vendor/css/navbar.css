@@ -1,0 +1,9 @@
+.navbar {
+  background-color: rgb(250, 138, 147) !important;
+  padding-inline: 5em;
+  margin-bottom: 5em;
+}
+
+.navbar-collapse {
+  flex-grow: 0;
+}
