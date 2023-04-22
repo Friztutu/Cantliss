@@ -27,6 +27,7 @@ share/python-wheels/
 onlinestore/secret_key.py
 onlinestore/__pycache__
 products/migrations
+media/
 MANIFEST
 
 # PyInstaller
