@@ -26,6 +26,7 @@ share/python-wheels/
 *.egg
 onlinestore/secret_key.py
 onlinestore/__pycache__
+products/migrations
 MANIFEST
 
 # PyInstaller
