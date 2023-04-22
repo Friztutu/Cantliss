@@ -8,7 +8,7 @@ def index(request):
     context = {
         'title': 'Главная',
     }
-    return render(request, 'index.html', context=context)
+    return render(request, 'products/index.html', context=context)
 
 
 def catalog(request):
@@ -17,4 +17,4 @@ def catalog(request):
         'products': Product.objects.all(),
         'categories': ProductCategory.objects.all(),
     }
-    return render(request, 'catalog.html', context=context)
+    return render(request, 'products/catalog.html', context=context)
