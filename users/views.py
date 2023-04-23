@@ -4,9 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.contrib import auth
 
+
 # Create your views here.
 
-
+@login_required
 def profile(request):
     if request.method == 'POST':
         form = UserProfileForm(instance=request.user, data=request.POST)
@@ -63,5 +64,6 @@ def login(request):
 
 
 def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect(reverse('users:login'))
+    if request.user.is_authenticated:
+        auth.logout(request)
+    return HttpResponseRedirect(reverse('products:index'))
