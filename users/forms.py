@@ -52,11 +52,11 @@ class UserProfileForm(UserChangeForm):
 
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4'}))
 
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4', 'readonly': True}))
 
-    email = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4', 'readonly': True}))
 
-    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'custom-file-input'}))
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'custom-file-input'}), required=False)
 
     class Meta:
         model = CustomUser
