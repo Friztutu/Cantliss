@@ -14,5 +14,14 @@ class Basket(models.Model):
     def __str__(self):
         return f'{self.user.name} || {self.product.name}'
 
-    def get_total_sum(self):
+    def get_product_sum(self):
         return self.product.price * self.quantity
+
+    def get_total_quantity(self):
+        baskets = self.objects.filter(user=self.user)
+        return sum(basket.quantity for basket in baskets)
+
+    def get_total_sum(self):
+        baskets = self.objects.filter(user=self.user)
+        return sum(basket.get_product_sum() for basket in baskets)
+
