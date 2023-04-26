@@ -3,6 +3,7 @@ from users.forms import UserRegistrationForm, UserProfileForm, UserLoginForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.contrib import auth
+from basket.models import Basket
 
 
 # Create your views here.
@@ -20,7 +21,8 @@ def profile(request):
 
     context = {
         'title': 'Profile',
-        'form': form
+        'form': form,
+        'baskets': Basket.objects.all(),
     }
     return render(request, 'users/profile.html', context=context)
 
