@@ -12,8 +12,7 @@
                 <li class="list-group-item bg-light">
                     <div class="row text-center">
                         <div class="col-lg-4">
-                            <input name="basketID" type="number" class="form-control"
-                                   value="1" min="0">
+                            <span class="form-control readonly"> {{ basket.quantity }}</span>
                         </div>
                         <div class="col-lg-4">{{ basket.product.get_total_sum }}</div>
                         <div class="col-lg-4">
@@ -25,14 +24,14 @@
                 </li>
             </ul>
         {% endfor %}
-    </div>
-    <div class="card mb-3">
-        <div class="card-footer">
-            <p class="float-left">Итого</p>
-            <h4 class="float-right">2 390 руб.</h4>
         </div>
-    </div>
-    <a class="btn btn-success btn-lg float-right" href="../orders/order-create.html">
+        <div class="card mb-3">
+            <div class="card-footer">
+                <p class="float-left">Итого</p>
+                <h4 class="float-right">2 390 руб.</h4>
+            </div>
+        </div>
+        <a class="btn btn-success btn-lg float-right" href="../orders/order-create.html">
                     Оформить заказ
                 </a>
 {% else %}
