@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-lg-4">{{ basket.product.get_total_sum }}</div>
                         <div class="col-lg-4">
-                            <a href="#">
+                            <a href="{% url 'basket:basket_remove' basket.id %}">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>
