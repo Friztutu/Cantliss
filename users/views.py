@@ -65,7 +65,7 @@ def login(request):
     return render(request, 'users/login.html', context=context)
 
 
+@login_required
 def logout(request):
-    if request.user.is_authenticated:
-        auth.logout(request)
+    auth.logout(request)
     return HttpResponseRedirect(reverse('products:index'))
