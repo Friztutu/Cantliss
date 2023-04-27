@@ -12,11 +12,7 @@ def index(request):
 
 
 def catalog(request, category_id=None):
-    if category_id:
-        category: object = ProductCategory.objects.get(id=category_id)
-        products: object = Product.objects.filter(category=category)
-    else:
-        products: object = Product.objects.all()
+    products = Product.objects.filter(category_id=category_id) if category_id else Product.objects.all()
     context = {
         'title': 'Каталог',
         'products': products,
