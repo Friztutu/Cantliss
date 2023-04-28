@@ -23,7 +23,7 @@ class Basket(models.Model):
     objects = BasketQuerySet.as_manager()
 
     def __str__(self):
-        return f'{self.user.name} || {self.product.name}'
+        return f'{self.product.name}'
 
     def get_product_sum(self):
         return self.product.price * self.quantity
