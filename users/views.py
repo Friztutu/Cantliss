@@ -2,7 +2,7 @@ from django.shortcuts import render
 from users.forms import UserRegistrationForm, UserProfileForm, UserLoginForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect, reverse
-from django.contrib import auth
+from django.contrib import auth, messages
 from basket.models import Basket
 
 
@@ -32,6 +32,7 @@ def register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Registration successful')
             return HttpResponseRedirect(reverse('users:profile'))
 
     else:
