@@ -2,47 +2,41 @@ from django.shortcuts import render
 from users.forms import UserRegistrationForm, UserProfileForm, UserLoginForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect, reverse
+from django.urls import reverse_lazy
 from django.contrib import auth, messages
 from basket.models import Basket
+from django.views.generic.edit import CreateView, UpdateView
+from users.models import CustomUser
 
 
 # Create your views here.
 
-@login_required
-def profile(request):
-    if request.method == 'POST':
-        form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('users:profile'))
 
-    else:
-        form = UserProfileForm(instance=request.user)
+class RegistrationView(CreateView):
+    model = CustomUser
+    template_name = 'users/register.html'
+    form_class = UserRegistrationForm
+    success_url = reverse_lazy('users:profile')
 
-    context = {
-        'title': 'Профиль',
-        'form': form,
-        'baskets': Basket.objects.filter(user=request.user),
-    }
-    return render(request, 'users/profile.html', context=context)
+    def get_context_data(self, **kwargs):
+        context = super(RegistrationView, self).get_context_data()
+        context['title'] = 'Регистрация'
+        return context
 
 
-def register(request):
-    if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Registration successful')
-            return HttpResponseRedirect(reverse('users:profile'))
+class ProfileView(UpdateView):
+    model = CustomUser
+    template_name = 'users/profile.html'
+    form_class = UserProfileForm
 
-    else:
-        form = UserRegistrationForm()
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data()
+        context['title'] = 'Профиль'
+        context['baskets'] = Basket.objects.filter(user=self.request.user)
+        return context
 
-    context = {
-        'title': 'Регистрация',
-        'form': form
-    }
-    return render(request, 'users/register.html', context=context)
+    def get_success_url(self):
+        return reverse_lazy('users:profile', args=(self.request.user.id, ))
 
 
 def login(request):
@@ -54,7 +48,7 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('users:profile'))
+                return HttpResponseRedirect(reverse('users:profile', args=(request.user.id, )))
 
     else:
         form = UserLoginForm()
