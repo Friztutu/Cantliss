@@ -1,28 +1,25 @@
 # base views
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
+from common.views import TitleMixin
 
 # models
 from products.models import Product, ProductCategory
 
 
-class IndexView(TemplateView):
+class IndexView(TitleMixin, TemplateView):
     template_name = 'products/index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data()
-        context['title'] = 'Главная'
-        return context
+    title = 'Главная'
 
 
-class CatalogView(ListView):
+class CatalogView(TitleMixin, ListView):
     model = Product
     template_name = 'products/catalog.html'
     paginate_by = 3
+    title = 'Каталог'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CatalogView, self).get_context_data()
-        context['title'] = 'Каталог'
         context['categories'] = ProductCategory.objects.all()
         return context
 

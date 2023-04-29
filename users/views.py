@@ -2,7 +2,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.urls import reverse_lazy
-from django.contrib import auth, messages
+from django.contrib import auth
+from django.contrib.messages.views import SuccessMessageMixin
+from common.views import TitleMixin
 
 # base views
 from django.contrib.auth.views import LoginView
@@ -16,26 +18,23 @@ from basket.models import Basket
 from users.models import CustomUser
 
 
-class UserRegistrationView(CreateView):
+class UserRegistrationView(TitleMixin, SuccessMessageMixin, CreateView):
     model = CustomUser
     template_name = 'users/register.html'
     form_class = UserRegistrationForm
     success_url = reverse_lazy('users:login')
-
-    def get_context_data(self, **kwargs):
-        context = super(UserRegistrationView, self).get_context_data()
-        context['title'] = 'Регистрация'
-        return context
+    success_message = 'Registration successful'
+    title = 'Регистрация'
 
 
-class UserProfileView(UpdateView):
+class UserProfileView(TitleMixin, UpdateView):
     model = CustomUser
     template_name = 'users/profile.html'
     form_class = UserProfileForm
+    title = 'Профиль'
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data()
-        context['title'] = 'Профиль'
         context['baskets'] = Basket.objects.filter(user=self.request.user)
         return context
 
@@ -43,9 +42,10 @@ class UserProfileView(UpdateView):
         return reverse_lazy('users:profile', args=(self.request.user.id,))
 
 
-class UserLoginView(LoginView):
+class UserLoginView(TitleMixin, LoginView):
     template_name = 'users/login.html'
     form_class = UserLoginForm
+    title = 'Авторизация'
 
     def get_success_url(self):
         return reverse_lazy('users:profile', args=(self.request.user.id,))
