@@ -1,4 +1,7 @@
+# default import
 from django.urls import path
+
+# views
 from products.views import IndexView, CatalogView
 
 

@@ -1,15 +1,19 @@
-from users.forms import UserRegistrationForm, UserProfileForm, UserLoginForm
+# settings
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.urls import reverse_lazy
 from django.contrib import auth, messages
-from basket.models import Basket
-from django.views.generic.edit import CreateView, UpdateView
-from users.models import CustomUser
+
+# base views
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import CreateView, UpdateView
 
+# base forms
+from users.forms import UserRegistrationForm, UserProfileForm, UserLoginForm
 
-# Create your views here.
+# models
+from basket.models import Basket
+from users.models import CustomUser
 
 
 class UserRegistrationView(CreateView):

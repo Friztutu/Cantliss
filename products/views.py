@@ -1,11 +1,10 @@
-from django.shortcuts import render
-from products.models import Product, ProductCategory
-from django.core.paginator import Paginator
+# base views
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
+# models
+from products.models import Product, ProductCategory
 
-# Create your views here.
 
 class IndexView(TemplateView):
     template_name = 'products/index.html'
@@ -32,4 +31,3 @@ class CatalogView(ListView):
         category_id = self.kwargs.get('category_id')
         queryset = queryset.filter(category_id=category_id) if category_id else queryset
         return queryset
-

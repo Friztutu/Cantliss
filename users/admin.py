@@ -1,4 +1,7 @@
+# default import
 from django.contrib import admin
+
+# our models
 from users.models import CustomUser
 from basket.admin import BasketAdmin
 

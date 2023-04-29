@@ -1,10 +1,11 @@
-from django.shortcuts import render, HttpResponseRedirect
-from products.models import Product, ProductCategory
-from basket.models import Basket
+# settings
+from django.shortcuts import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
+# models
+from products.models import Product
+from basket.models import Basket
 
-# Create your views here.
 
 @login_required
 def basket_add(request, product_id):
