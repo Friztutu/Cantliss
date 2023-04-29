@@ -1,63 +1,50 @@
-from django.shortcuts import render
 from users.forms import UserRegistrationForm, UserProfileForm, UserLoginForm
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.urls import reverse_lazy
 from django.contrib import auth, messages
 from basket.models import Basket
 from django.views.generic.edit import CreateView, UpdateView
 from users.models import CustomUser
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
 
-class RegistrationView(CreateView):
+class UserRegistrationView(CreateView):
     model = CustomUser
     template_name = 'users/register.html'
     form_class = UserRegistrationForm
-    success_url = reverse_lazy('users:profile')
+    success_url = reverse_lazy('users:login')
 
     def get_context_data(self, **kwargs):
-        context = super(RegistrationView, self).get_context_data()
+        context = super(UserRegistrationView, self).get_context_data()
         context['title'] = 'Регистрация'
         return context
 
 
-class ProfileView(UpdateView):
+class UserProfileView(UpdateView):
     model = CustomUser
     template_name = 'users/profile.html'
     form_class = UserProfileForm
 
     def get_context_data(self, **kwargs):
-        context = super(ProfileView, self).get_context_data()
+        context = super(UserProfileView, self).get_context_data()
         context['title'] = 'Профиль'
         context['baskets'] = Basket.objects.filter(user=self.request.user)
         return context
 
     def get_success_url(self):
-        return reverse_lazy('users:profile', args=(self.request.user.id, ))
+        return reverse_lazy('users:profile', args=(self.request.user.id,))
 
 
-def login(request):
-    if request.method == 'POST':
-        form = UserLoginForm(data=request.POST)
-        if form.is_valid():
-            username = request.POST['username']
-            password = request.POST['password']
-            user = auth.authenticate(username=username, password=password)
-            if user:
-                auth.login(request, user)
-                return HttpResponseRedirect(reverse('users:profile', args=(request.user.id, )))
+class UserLoginView(LoginView):
+    template_name = 'users/login.html'
+    form_class = UserLoginForm
 
-    else:
-        form = UserLoginForm()
-
-    context = {
-        'title': 'Авторизация',
-        'form': form
-    }
-    return render(request, 'users/login.html', context=context)
+    def get_success_url(self):
+        return reverse_lazy('users:profile', args=(self.request.user.id,))
 
 
 @login_required

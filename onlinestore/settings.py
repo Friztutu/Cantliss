@@ -26,7 +26,7 @@ SECRET_KEY = KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -135,4 +135,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Users
 AUTH_USER_MODEL = 'users.CustomUser'
 
+# Login url
 LOGIN_URL = '/login/'
