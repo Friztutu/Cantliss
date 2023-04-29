@@ -1,15 +1,13 @@
 from django.shortcuts import render
 from products.models import Product, ProductCategory
 from django.core.paginator import Paginator
+from django.views.generic.base import TemplateView
 
 
 # Create your views here.
 
-def index(request):
-    context = {
-        'title': 'Главная',
-    }
-    return render(request, 'products/index.html', context=context)
+class IndexView(TemplateView):
+    template_name = 'products/index.html'
 
 
 def catalog(request, category_id=None, page=1):

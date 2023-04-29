@@ -20,7 +20,7 @@ def profile(request):
         form = UserProfileForm(instance=request.user)
 
     context = {
-        'title': 'Profile',
+        'title': 'Профиль',
         'form': form,
         'baskets': Basket.objects.filter(user=request.user),
     }
@@ -39,7 +39,7 @@ def register(request):
         form = UserRegistrationForm()
 
     context = {
-        'title': 'Profile',
+        'title': 'Регистрация',
         'form': form
     }
     return render(request, 'users/register.html', context=context)
@@ -60,7 +60,7 @@ def login(request):
         form = UserLoginForm()
 
     context = {
-        'title': 'Profile',
+        'title': 'Авторизация',
         'form': form
     }
     return render(request, 'users/login.html', context=context)
