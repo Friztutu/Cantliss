@@ -1,6 +1,7 @@
 # base models
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.mail import send_mail
 
 
 # Create your models here.
@@ -22,3 +23,12 @@ class EmailVerification(models.Model):
 
     def __str__(self):
         return f'Code for {self.user}'
+
+    def send_verification_email(self):
+        send_mail(
+            "Subject here",
+            "Here is the message.",
+            "from@example.com",
+            [self.user.email],
+            fail_silently=False,
+        )
