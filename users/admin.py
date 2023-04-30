@@ -16,6 +16,7 @@ class UserAdmin(admin.ModelAdmin):
         'username', ('first_name', 'last_name'),
         'email', 'password', 'img',
         ('is_superuser', 'is_staff', 'is_active'),
+        'is_verified_email',
         'date_joined', 'user_permissions', 'groups'
     )
     readonly_fields = ('username', 'password', 'date_joined')

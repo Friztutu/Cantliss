@@ -52,7 +52,12 @@
                         </div>
                         <div class="col-lg-6">
                             <label class="small mb-1" for="{{ form.email.id_for_label }}">Адрес электронной
-                                почты</label>
+                                почты  {% if user.is_verified_email %}
+                                           ✔️ Потвержден
+                                       {% else %}
+                                           ❌ Не потвержден
+                                       {% endif %}
+                            </label>
                             {{ form.email }}
                         </div>
                     </div>
