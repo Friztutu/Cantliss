@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # our models
-from users.models import CustomUser
+from users.models import CustomUser, EmailVerification
 from basket.admin import BasketAdmin
 
 
@@ -20,5 +20,13 @@ class UserAdmin(admin.ModelAdmin):
     )
     readonly_fields = ('username', 'password', 'date_joined')
     search_fields = ('username',)
-    list_filter = ('is_superuser', 'is_staff', 'is_active')
-    inlines = (BasketAdmin, )
+    list_filter = ('is_superuser', 'is_staff', 'is_active', 'is_verified_email')
+    inlines = (BasketAdmin,)
+
+
+@admin.register(EmailVerification)
+class EmailVerificationAdmin(admin.ModelAdmin):
+    list_display = ('code', 'user', 'created_at', 'expiration')
+    fields = ('code', 'user', 'created_at', 'expiration')
+    readonly_fields = ('code', 'user', 'created_at', 'expiration')
+    search_fields = ('user',)

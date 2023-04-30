@@ -137,3 +137,6 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 # Login url
 LOGIN_URL = '/login/'
+
+# Email settings
+EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
