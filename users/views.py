@@ -61,7 +61,7 @@ class EmailVerificationView(TitleMixin, TemplateView):
         user = CustomUser.objects.get(email=kwargs.get('email'))
         email_verify = EmailVerification.objects.filter(user=user, code=code)
         if email_verify:
-            user.is_verified = True
+            user.is_verified_email = True
             user.save()
             return super(EmailVerificationView, self).get(request, *args, **kwargs)
         return HttpResponseRedirect(reverse('products:index'))
