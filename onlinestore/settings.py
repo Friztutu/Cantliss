@@ -140,4 +140,10 @@ AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = '/login/'
 
 # Email settings
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_SERVER = 'fr1zmate@yandex.ru'
+EMAIL_HOST_PASSWORD = 'qwaxklpidtirsryl'
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
