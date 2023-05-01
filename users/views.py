@@ -34,6 +34,10 @@ class UserProfileView(TitleMixin, UpdateView):
     form_class = UserProfileForm
     title = 'Профиль'
 
+    def get(self, request, *args, **kwargs):
+        self.kwargs['pk'] = request.user.id
+        return super().get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data()
         context['baskets'] = Basket.objects.filter(user=self.request.user)
