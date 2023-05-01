@@ -30,6 +30,7 @@ products/migrations
 media/
 MANIFEST
 basket/migrations/
+.flake8
 
 
 # PyInstaller

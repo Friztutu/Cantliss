@@ -15,7 +15,6 @@ from django.views.generic.edit import CreateView, UpdateView
 from users.forms import UserRegistrationForm, UserProfileForm, UserLoginForm
 
 # models
-from basket.models import Basket
 from users.models import CustomUser, EmailVerification
 
 

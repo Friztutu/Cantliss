@@ -25,7 +25,7 @@ class Product(models.Model):
 
     class Meta:
         verbose_name = 'Product'
-        verbose_name_plural ='Products'
+        verbose_name_plural = 'Products'
 
     def __str__(self):
         return self.name
