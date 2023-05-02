@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from onlinestore.secret_key import KEY
+from onlinestore.secret_key import KEY, DB_KEY, DB_NAME, DB_USERNAME
 import os
 import psycopg2
 
@@ -97,9 +97,9 @@ WSGI_APPLICATION = 'onlinestore.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cantliss',
-        'USER': 'cantliss_admin',
-        'PASSWORD': '65ToTeDa$$',
+        'NAME': DB_NAME,
+        'USER': DB_USERNAME,
+        'PASSWORD': DB_KEY,
         'HOST': '127.0.0.1',
         'PORT': '5432',
 
