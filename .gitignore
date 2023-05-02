@@ -31,6 +31,8 @@ media/
 MANIFEST
 basket/migrations/
 .flake8
+products/fixtures
+users/fixtures
 
 
 # PyInstaller
