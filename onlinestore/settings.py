@@ -160,6 +160,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 # Login url
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
 
 # Email settings
 
