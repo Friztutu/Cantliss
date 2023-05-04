@@ -55,3 +55,12 @@ class CatalogViewTestCase(TestCase):
         self._common_test(response)
 
         self.assertEqual(list(response.context_data['object_list']), list(self.products)[3:6])
+
+    def test_view_with_page_and_category(self):
+        category = ProductCategory.objects.get(id=2)
+        path = reverse('catalog:category', kwargs={'category_id': category.id}) + '?page=2'
+        response = self.client.get(path)
+
+        self._common_test(response)
+
+        self.assertEqual(list(response.context_data['object_list']), list(self.products.filter(category_id=category.id))[3:6])
