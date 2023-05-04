@@ -63,4 +63,34 @@ class UserRegistrationViewTestCase(TestCase):
 
 
 class UserLoginViewTestCase(TestCase):
-    pass
+    fixtures = ('users.json', )
+
+    def setUp(self) -> None:
+        self.path = reverse('users:login')
+        self.data = {
+            'username':'sanylz234',
+            'password': '1234'
+        }
+
+    def test_view(self):
+        response = self.client.get(self.path)
+
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(response.context_data['title'], 'Авторизация')
+        self.assertTemplateUsed('users/login.html')
+
+    def test_post_request_success(self):
+        response = self.client.post(path=self.path, data=self.data)
+
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertRedirects(response=response, expected_url=reverse('users:profile', args=(1, )))
+
+    def test_post_request_failure(self):
+        self.data['password'] = '12345'
+        response = self.client.post(path=self.path, data=self.data)
+
+        self.assertContains(
+            response=response,
+            text='Пожалуйста, введите правильные имя пользователя и пароль. '
+                 'Оба поля могут быть чувствительны к регистру.'
+        )
