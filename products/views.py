@@ -1,8 +1,8 @@
 # base views
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
-from common.views import TitleMixin
 
+from common.views import TitleMixin
 # models
 from products.models import Product, ProductCategory
 

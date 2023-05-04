@@ -1,6 +1,8 @@
+from http import HTTPStatus
+
 from django.test import TestCase
 from django.urls import reverse
-from http import HTTPStatus
+
 from products.models import Product, ProductCategory
 
 
@@ -63,4 +65,7 @@ class CatalogViewTestCase(TestCase):
 
         self._common_test(response)
 
-        self.assertEqual(list(response.context_data['object_list']), list(self.products.filter(category_id=category.id))[3:6])
+        self.assertEqual(
+            list(response.context_data['object_list']),
+            list(self.products.filter(category_id=category.id))[3:6]
+        )

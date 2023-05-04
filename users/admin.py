@@ -1,10 +1,9 @@
 # default import
 from django.contrib import admin
 
+from basket.admin import BasketAdmin
 # our models
 from users.models import CustomUser, EmailVerification
-from basket.admin import BasketAdmin
-
 
 # Register your models here.
 

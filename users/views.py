@@ -1,19 +1,17 @@
 # settings
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import HttpResponseRedirect, reverse
-from django.urls import reverse_lazy
 from django.contrib import auth
-from django.contrib.messages.views import SuccessMessageMixin
-from common.views import TitleMixin
-from django.views.generic import TemplateView
-
+from django.contrib.auth.decorators import login_required
 # base views
 from django.contrib.auth.views import LoginView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import HttpResponseRedirect, reverse
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 
+from common.views import TitleMixin
 # base forms
-from users.forms import UserRegistrationForm, UserProfileForm, UserLoginForm
-
+from users.forms import UserLoginForm, UserProfileForm, UserRegistrationForm
 # models
 from users.models import CustomUser, EmailVerification
 

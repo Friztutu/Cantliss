@@ -10,10 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
-from onlinestore.secret_key import KEY, DB_KEY, DB_NAME, DB_USERNAME
 import os
+from pathlib import Path
+
 import psycopg2
+
+from onlinestore.secret_key import DB_KEY, DB_NAME, DB_USERNAME, KEY
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

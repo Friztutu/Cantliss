@@ -2,8 +2,7 @@
 from django.urls import path
 
 # views
-from products.views import IndexView, CatalogView
-
+from products.views import CatalogView, IndexView
 
 app_name = 'catalog'
 

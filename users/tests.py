@@ -1,8 +1,9 @@
+from http import HTTPStatus
+
 from django.test import TestCase
 from django.urls import reverse
-from http import HTTPStatus
-from users.models import CustomUser, EmailVerification
 
+from users.models import CustomUser, EmailVerification
 
 # Create your tests here.
 
@@ -34,7 +35,7 @@ class UserRegistrationViewTestCase(TestCase):
         self.assertTrue(email_verify.exists())
 
     def test_post_request_failure(self):
-        user = CustomUser.objects.create(
+        CustomUser.objects.create(
             username=self.data['username'],
             email=self.data['email'],
         )
@@ -68,7 +69,7 @@ class UserLoginViewTestCase(TestCase):
     def setUp(self) -> None:
         self.path = reverse('users:login')
         self.data = {
-            'username':'sanylz234',
+            'username': 'sanylz234',
             'password': '1234'
         }
 
@@ -94,3 +95,37 @@ class UserLoginViewTestCase(TestCase):
             text='Пожалуйста, введите правильные имя пользователя и пароль. '
                  'Оба поля могут быть чувствительны к регистру.'
         )
+
+
+class UserProfileViewTestCase(TestCase):
+    fixtures = ('users.json', )
+
+    def setUp(self):
+        self.path = reverse('users:profile', args=(1, ))
+
+    def test_view_none_auth(self):
+        response = self.client.get(path=self.path)
+
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertRedirects(response, reverse('users:login') + '?next=/profile/1/')
+
+    def test_view_auth(self):
+        login_path = reverse('users:login')
+        data = {
+            'username': 'sanylz234',
+            'password': '1234'
+        }
+        response_login = self.client.post(login_path, data=data)
+
+        self.assertEqual(response_login.status_code, HTTPStatus.FOUND)
+        self.assertRedirects(response=response_login, expected_url=reverse('users:profile', args=(1,)))
+
+        response = self.client.get(path=self.path)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context_data['title'], 'Профиль')
+        self.assertTemplateUsed(response, 'users/profile.html')
+        self.assertContains(response, text='sanylz234')
+        self.assertContains(response, text='Александр')
+        self.assertContains(response, text='Erofeev')
+        self.assertContains(response, text='alexerof9@gmail.com')

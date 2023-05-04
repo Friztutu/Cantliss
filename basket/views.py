@@ -1,10 +1,10 @@
 # settings
-from django.shortcuts import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import HttpResponseRedirect
 
+from basket.models import Basket
 # models
 from products.models import Product
-from basket.models import Basket
 
 
 @login_required
