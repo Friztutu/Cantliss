@@ -9,7 +9,6 @@ from products.models import Product, ProductCategory
 class AdminProduct(admin.ModelAdmin):
     list_display = ('name', 'price', 'quantity', 'category')
     fields = ('name', 'description',  ('price', 'quantity'), 'category', 'img')
-    readonly_fields = ('quantity',)
     search_fields = ('name', )
     ordering = ('name', )
 
