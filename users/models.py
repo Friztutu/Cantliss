@@ -4,10 +4,11 @@ from django.core.mail import send_mail
 from django.db import models
 from django.urls import reverse
 
+
 # Create your models here.
 
 class CustomUser(AbstractUser):
-    img = models.ImageField(upload_to=r'user_img', default=r'user_img/default.jpg')
+    img = models.ImageField(upload_to=r'user_img', null=True, blank=True)
     is_verified_email = models.BooleanField(default=False)
     email = models.EmailField(unique=True)
 
