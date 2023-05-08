@@ -15,7 +15,7 @@ from pathlib import Path
 
 import psycopg2
 
-from onlinestore.secret_key import DB_KEY, DB_NAME, DB_USERNAME, KEY
+from onlinestore.secret_key import DB_KEY, DB_NAME, DB_USERNAME, KEY, EMAIL_LOGIN, EMAIL_PASSWORD
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -183,13 +183,11 @@ LOGIN_REDIRECT_URL = '/'
 
 # Email settings
 
-# EMAIL_HOST = 'smtp.yandex.ru'
-# EMAIL_PORT = 465
-# EMAIL_HOST_SERVER = 'fr1zmate@yandex.ru'
-# EMAIL_HOST_PASSWORD = 'qwaxklpidtirsryl'
-# EMAIL_USE_SSL = True
-# EMAIL_USE_TLS = False
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = EMAIL_LOGIN
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
+EMAIL_USE_SSL = True
 
 # OAuth
 AUTHENTICATION_BACKENDS = [
