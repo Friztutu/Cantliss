@@ -5,6 +5,7 @@ from django.urls import reverse
 
 from users.models import CustomUser, EmailVerification
 
+
 # Create your tests here.
 
 class UserRegistrationViewTestCase(TestCase):
@@ -64,7 +65,7 @@ class UserRegistrationViewTestCase(TestCase):
 
 
 class UserLoginViewTestCase(TestCase):
-    fixtures = ('users.json', )
+    fixtures = ('users.json',)
 
     def setUp(self) -> None:
         self.path = reverse('users:login')
@@ -84,7 +85,7 @@ class UserLoginViewTestCase(TestCase):
         response = self.client.post(path=self.path, data=self.data)
 
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
-        self.assertRedirects(response=response, expected_url=reverse('users:profile', args=(1, )))
+        self.assertRedirects(response=response, expected_url=reverse('users:profile', args=(1,)))
 
     def test_post_request_failure(self):
         self.data['password'] = '12345'
@@ -98,10 +99,10 @@ class UserLoginViewTestCase(TestCase):
 
 
 class UserProfileViewTestCase(TestCase):
-    fixtures = ('users.json', )
+    fixtures = ('users.json',)
 
     def setUp(self):
-        self.path = reverse('users:profile', args=(1, ))
+        self.path = reverse('users:profile', args=(1,))
 
     def test_view_none_auth(self):
         response = self.client.get(path=self.path)
