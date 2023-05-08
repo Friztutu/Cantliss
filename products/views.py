@@ -1,10 +1,9 @@
-# base views
+
+from django.core.cache import cache
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
-from django.core.cache import cache
 
 from common.views import TitleMixin
-# models
 from products.models import Product, ProductCategory
 
 

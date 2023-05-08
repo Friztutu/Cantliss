@@ -1,7 +1,6 @@
-# base import
+
 from django.urls import path
 
-# our controllers
 from basket.views import basket_add, basket_remove
 
 app_name = 'basket'

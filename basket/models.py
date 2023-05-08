@@ -1,7 +1,6 @@
-# base import
+
 from django.db import models
 
-# my models
 from products.models import Product
 from users.models import CustomUser
 

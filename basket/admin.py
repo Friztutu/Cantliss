@@ -1,7 +1,6 @@
-# settings
+
 from django.contrib import admin
 
-# models
 from basket.models import Basket
 
 

@@ -1,9 +1,8 @@
-# settings
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect
 
 from basket.models import Basket
-# models
 from products.models import Product
 
 

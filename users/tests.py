@@ -5,7 +5,6 @@ from django.urls import reverse
 
 from users.models import CustomUser, EmailVerification
 
-
 # Create your tests here.
 
 class UserRegistrationViewTestCase(TestCase):
