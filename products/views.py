@@ -27,11 +27,11 @@ class CatalogView(TitleMixin, ListView):
         else:
             context['categories'] = categories
         context['categories'] = ProductCategory.objects.all()
-        context['category_id'] = self.kwargs.get('category_id')
+        context['category_slug'] = self.kwargs.get('category_slug')
         return context
 
     def get_queryset(self):
         queryset = super(CatalogView, self).get_queryset()
-        category_id = self.kwargs.get('category_id')
-        queryset = queryset.filter(category_id=category_id) if category_id else queryset
+        category_slug = self.kwargs.get('category_slug')
+        queryset = queryset.filter(category__slug=category_slug) if category_slug else queryset
         return queryset
