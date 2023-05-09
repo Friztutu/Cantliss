@@ -13,8 +13,12 @@ class OrderCreateView(TitleMixin, CreateView):
     template_name = 'orders/order-create.html'
     title = 'Создание заказа'
     form_class = OrderCreationForm
-    success_url = reverse_lazy('orders:success')
+    success_url = reverse_lazy('orders:order_success')
     model = Order
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class OrderView(TitleMixin, TemplateView):

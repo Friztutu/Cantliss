@@ -4,6 +4,7 @@ from django.core.mail import send_mail
 from django.db import models
 from django.urls import reverse
 
+
 # Create your models here.
 
 class CustomUser(AbstractUser):
