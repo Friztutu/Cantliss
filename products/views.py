@@ -35,3 +35,13 @@ class CatalogView(TitleMixin, ListView):
         category_slug = self.kwargs.get('category_slug')
         queryset = queryset.filter(category__slug=category_slug) if category_slug else queryset
         return queryset
+
+
+class CardView(TitleMixin, TemplateView):
+    template_name = 'products/card.html'
+    title = 'Карточка товара'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['product'] = Product.objects.get(slug=self.kwargs.get('product_slug'))
+        return context
