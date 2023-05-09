@@ -15,7 +15,8 @@ from pathlib import Path
 
 import psycopg2
 
-from onlinestore.secret_key import DB_KEY, DB_NAME, DB_USERNAME, KEY, EMAIL_LOGIN, EMAIL_PASSWORD
+from onlinestore.secret_key import (DB_KEY, DB_NAME, DB_USERNAME, EMAIL_LOGIN,
+                                    EMAIL_PASSWORD, KEY)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
