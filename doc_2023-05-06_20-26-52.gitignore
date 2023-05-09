@@ -33,6 +33,7 @@ basket/migrations/
 .flake8
 products/fixtures
 users/fixtures
+orders/migrations
 
 
 # PyInstaller
