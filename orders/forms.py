@@ -2,7 +2,7 @@ from django import forms
 from orders.models import Order
 
 
-class OrderCreationForm(forms.Form):
+class OrderCreationForm(forms.ModelForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control'
     }))
