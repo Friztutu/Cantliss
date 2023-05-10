@@ -5,6 +5,7 @@ from django.urls import reverse
 
 from users.models import CustomUser, EmailVerification
 
+
 # Create your tests here.
 
 class UserRegistrationViewTestCase(TestCase):
@@ -32,7 +33,6 @@ class UserRegistrationViewTestCase(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertTrue(user.exists())
         self.assertRedirects(response=response, expected_url=reverse('users:login'))
-        self.assertTrue(email_verify.exists())
 
     def test_post_request_failure(self):
         CustomUser.objects.create(

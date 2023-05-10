@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from common.views import TitleMixin
 from orders.forms import OrderCreationForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from orders.models import Order
 
 
@@ -18,7 +17,12 @@ class OrderCreateView(TitleMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super().form_valid(form)
+        return super(OrderCreateView, self).form_valid(form)
+
+
+class OrderCanceledView(TitleMixin, TemplateView):
+    template_name = 'orders/canceled.html'
+    title = 'Ошибка'
 
 
 class OrderView(TitleMixin, TemplateView):
