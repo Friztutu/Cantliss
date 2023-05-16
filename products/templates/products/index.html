@@ -7,27 +7,21 @@
 {% endblock %}
 
 {% block css %}
-   <!-- Custom styles for this template -->
-    <link href='{% static "/css/index.css" %}' rel="stylesheet">
+    <link href='static/css/index5.css' rel="stylesheet">
 {% endblock %}
 
 
 
 {% block content %}
-    <!-- Page Content -->
     <section>
-        <!--    <div class="alert alert-light text-center" role="alert">-->
-        <!--        Информационное сообщение-->
-        <!--    </div>-->
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <h1 class="mt-5">Store</h1>
-                    <p>
-                        Новые образы и лучшие бренды на Store.
-                        Бесплатная доставка по всему миру! Аутлет: до -70% Собственный бренд. -20% новым покупателям.
+                    <h1 class="title mt-5">【₵₳₦₮Ⱡł₴₴】</h1>
+                    <p class="description-text">
+                        ᴄᴀʍый нᴇɸоᴩʍᴀᴧьный ʍᴀᴦᴀзин ᴄнᴦ, ᴄ ɯиᴩоᴋиʍ ᴀᴄᴄоᴩиʍᴇнᴛоʍ ᴩоᴋ ᴀᴛᴛᴩибуᴛиᴋи
                     </p>
-                    <button id="start-purchase-btn" type="button" class="btn btn-lg">
+                    <button type="button" class="btn-color btn btn-lg">
                         <a id="start-purchase-link" href="{% url 'catalog:catalog' %}">
                             Начать покупки
                         </a>
@@ -37,4 +31,3 @@
         </div>
     </section>
 {% endblock %}
-
