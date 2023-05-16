@@ -1,5 +1,7 @@
 {% extends 'products/base.html' %}
 {% load static %}
+{% load humanize %}
+
 
 {% block title %}
     <title>Store - Заказ №12345</title>
@@ -27,33 +29,19 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {% for product in object.basket_history.items %}
                         <tr>
                             <th scope="row">
-                                Худи черного цвета с монограммами adidas Originals
+                                {{ product.product_name }}
                             </th>
-                            <td>1</td>
-                            <td>6 090,00 руб.</td>
-                            <td>6 090,00 руб.</td>
+                            <td>{{ product.quantity }}</td>
+                            <td>{{ product.price|intcomma }}</td>
+                            <td>{{ product.sum|intcomma  }}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">
-                                Синяя куртка The North Face
-                            </th>
-                            <td>1</td>
-                            <td>23 725,00 руб.</td>
-                            <td>23 725,00 руб.</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                Коричневый спортивный oversized-топ ASOS DESIGN
-                            </th>
-                            <td>2</td>
-                            <td>3 390,00 руб.</td>
-                            <td>6 780,00 руб.</td>
-                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
-                    <p class="float-right h4 mt-3">Итого 36 595,00 руб.</p>
+                    <p class="float-right h4 mt-3">Итого {{ object.basket_history.total|intcomma }}руб.</p>
                 </div>
             </div>
         </div>

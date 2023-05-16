@@ -1,5 +1,7 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from common.views import TitleMixin
 from orders.forms import OrderCreationForm
 from django.urls import reverse_lazy, reverse
@@ -9,6 +11,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from http import HTTPStatus
 from basket.models import Basket
+from users.models import CustomUser
 
 from yookassa import Payment
 
@@ -56,14 +59,23 @@ class OrderCanceledView(TitleMixin, TemplateView):
     title = 'Ошибка'
 
 
-class OrderView(TitleMixin, TemplateView):
+class OrderView(TitleMixin, DetailView):
     template_name = 'orders/order.html'
     title = 'Заказ'
+    model = Order
 
 
-class OrderListView(TitleMixin, TemplateView):
+class OrderListView(TitleMixin, ListView):
     template_name = 'orders/orders-list.html'
     title = 'Список заказов'
+    queryset = Order.objects.all()
+    ordering = '-create_at'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user_id = self.kwargs.get('user_id')
+        queryset = queryset.filter(user_id=user_id)
+        return queryset
 
 
 class OrderSuccessView(TitleMixin, TemplateView):
