@@ -12,11 +12,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+from yookassa import Configuration
 
 import psycopg2
 
 from onlinestore.secret_key import (DB_KEY, DB_NAME, DB_USERNAME, EMAIL_LOGIN,
-                                    EMAIL_PASSWORD, KEY)
+                                    EMAIL_PASSWORD, KEY, yookassa_key, yookassa_id)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -211,3 +212,8 @@ SOCIALACCOUNT_PROVIDERS = {
 #CELERY SETTINGS
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+
+# yookassa
+
+Configuration.account_id = yookassa_id
+Configuration.secret_key = yookassa_key

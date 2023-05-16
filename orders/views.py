@@ -4,6 +4,13 @@ from common.views import TitleMixin
 from orders.forms import OrderCreationForm
 from django.urls import reverse_lazy, reverse
 from orders.models import Order
+import uuid
+from django.conf import settings
+from django.http import HttpResponseRedirect
+from http import HTTPStatus
+from basket.models import Basket
+
+from yookassa import Payment
 
 
 # Create your views here.
@@ -12,12 +19,36 @@ class OrderCreateView(TitleMixin, CreateView):
     template_name = 'orders/order-create.html'
     title = 'Создание заказа'
     form_class = OrderCreationForm
-    success_url = reverse_lazy('orders:order_success')
+    success_url = reverse_lazy('orders:order_success', kwargs={'order_id': 1})
     model = Order
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(OrderCreateView, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        super().post(request, *args, **kwargs)
+
+        idempotence_key = str(uuid.uuid4())
+        user_basket = Basket.objects.filter(user=request.user)
+        order_id = Order.objects.last().id
+        payment = Payment.create({
+            "amount": {
+                "value": f"{user_basket.get_total_sum()}",
+                "currency": "RUB"
+            },
+            "payment_method_data": {
+                "type": "bank_card"
+            },
+            "confirmation": {
+                "type": "redirect",
+                "return_url": "{}{}".format(settings.DOMAIN_NAME,
+                                            reverse('orders:order_success', kwargs={'order_id': order_id}))
+            },
+            "description": f"Заказ {order_id}"
+        }, idempotence_key)
+
+        return HttpResponseRedirect(payment.confirmation.confirmation_url, status=HTTPStatus.SEE_OTHER)
 
 
 class OrderCanceledView(TitleMixin, TemplateView):
@@ -38,3 +69,8 @@ class OrderListView(TitleMixin, TemplateView):
 class OrderSuccessView(TitleMixin, TemplateView):
     template_name = 'orders/success.html'
     title = 'Успех'
+
+    def get(self, request, *args, **kwargs):
+        order = Order.objects.get(id=self.kwargs.get('order_id'))
+        order.update_after_payment()
+        return super().get(request, *args, **kwargs)

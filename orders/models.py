@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import CustomUser
-from products.models import Product
+from basket.models import Basket
 
 
 # Create your models here.
@@ -25,3 +25,13 @@ class Order(models.Model):
     last_name = models.CharField(max_length=255)
     status = models.PositiveSmallIntegerField(default=CREATED, choices=STATUSES)
     email = models.EmailField()
+
+    def update_after_payment(self):
+        baskets = Basket.objects.filter(user=self.user)
+        self.status = self.PAID
+        self.basket_history = {
+            'items': [basket.get_json() for basket in baskets],
+            'total': float(baskets.get_total_sum())
+        }
+        baskets.delete()
+        self.save()

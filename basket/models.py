@@ -1,4 +1,4 @@
-
+import json
 from django.db import models
 
 from products.models import Product
@@ -26,3 +26,13 @@ class Basket(models.Model):
 
     def get_product_sum(self):
         return self.product.price * self.quantity
+
+    def get_json(self):
+        basket_item = {
+            'product_name': str(self.product.name),
+            'quantity': int(self.quantity),
+            'price': float(self.product.price),
+            'sum': float(self.get_product_sum())
+        }
+
+        return basket_item
