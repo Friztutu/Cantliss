@@ -3,7 +3,8 @@ from http import HTTPStatus
 from django.test import TestCase
 from django.urls import reverse
 
-from users.models import CustomUser, EmailVerification
+from users.models import CustomUser
+
 
 # Create your tests here.
 
@@ -27,7 +28,6 @@ class UserRegistrationViewTestCase(TestCase):
     def test_post_request_success(self):
         response = self.client.post(path=self.path, data=self.data)
         user = CustomUser.objects.filter(username=self.data['username'])
-        email_verify = EmailVerification.objects.filter(user__username=self.data['username'])
 
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertTrue(user.exists())

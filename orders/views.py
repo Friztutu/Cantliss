@@ -15,6 +15,7 @@ from common.views import TitleMixin
 from orders.forms import OrderCreationForm
 from orders.models import Order
 
+
 # Create your views here.
 
 class OrderCreateView(TitleMixin, CreateView):

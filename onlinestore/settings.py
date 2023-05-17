@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
-import psycopg2
 from yookassa import Configuration
 
 from onlinestore.secret_key import (DB_KEY, DB_NAME, DB_USERNAME, EMAIL_LOGIN,
@@ -211,7 +210,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-#CELERY SETTINGS
+# CELERY SETTINGS
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
 
