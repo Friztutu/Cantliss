@@ -1,18 +1,19 @@
-from django.views.generic.base import TemplateView
-from django.views.generic.edit import CreateView
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
-from common.views import TitleMixin
-from orders.forms import OrderCreationForm
-from django.urls import reverse_lazy, reverse
-from orders.models import Order
 import uuid
+from http import HTTPStatus
+
 from django.conf import settings
 from django.http import HttpResponseRedirect
-from http import HTTPStatus
-from basket.models import Basket
+from django.urls import reverse, reverse_lazy
+from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 from yookassa import Payment
 
+from basket.models import Basket
+from common.views import TitleMixin
+from orders.forms import OrderCreationForm
+from orders.models import Order
 
 # Create your views here.
 

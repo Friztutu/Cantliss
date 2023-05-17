@@ -1,7 +1,8 @@
-from django.urls import path
-from orders.views import OrderCreateView, OrderView, OrderListView, OrderSuccessView, OrderCanceledView
 from django.contrib.auth.decorators import login_required
+from django.urls import path
 
+from orders.views import (OrderCanceledView, OrderCreateView, OrderListView,
+                          OrderSuccessView, OrderView)
 
 app_name = 'orders'
 

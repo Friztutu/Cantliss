@@ -1,7 +1,7 @@
 from django.db import models
-from users.models import CustomUser
-from basket.models import Basket
 
+from basket.models import Basket
+from users.models import CustomUser
 
 # Create your models here.
 

@@ -12,12 +12,13 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-from yookassa import Configuration
 
 import psycopg2
+from yookassa import Configuration
 
 from onlinestore.secret_key import (DB_KEY, DB_NAME, DB_USERNAME, EMAIL_LOGIN,
-                                    EMAIL_PASSWORD, KEY, yookassa_key, yookassa_id)
+                                    EMAIL_PASSWORD, KEY, yookassa_id,
+                                    yookassa_key)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
