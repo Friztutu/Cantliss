@@ -5,6 +5,7 @@ from django.urls import reverse
 
 from products.models import Product, ProductCategory
 
+
 # Create your tests here.
 
 class IndexViewTestCase(TestCase):
@@ -39,7 +40,7 @@ class CatalogViewTestCase(TestCase):
     def test_view_with_category(self):
         category = ProductCategory.objects.first()
 
-        path = reverse('catalog:category', kwargs={'category_id': category.id})
+        path = reverse('catalog:category', kwargs={'category_slug': category.slug})
         response = self.client.get(path)
 
         self._common_test(response)
@@ -58,8 +59,9 @@ class CatalogViewTestCase(TestCase):
         self.assertEqual(list(response.context_data['object_list']), list(self.products)[3:6])
 
     def test_view_with_page_and_category(self):
-        category = ProductCategory.objects.get(id=2)
-        path = reverse('catalog:category', kwargs={'category_id': category.id}) + '?page=2'
+        category = ProductCategory.objects.get(slug='odezhda')
+        path = reverse('catalog:category', kwargs={'category_slug': category.slug}) + '?page=2'
+        print(path)
         response = self.client.get(path)
 
         self._common_test(response)
