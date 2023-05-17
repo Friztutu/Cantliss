@@ -34,6 +34,9 @@ class UserProfileView(TitleMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('users:profile', args=(self.request.user.id,))
 
+    def post(self, request, *args, **kwargs):
+        pass
+
 
 class UserLoginView(TitleMixin, LoginView):
     template_name = 'users/login.html'

@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'debug_toolbar',
     'django.contrib.humanize',
+    'django_extensions',
 
     'allauth',
     'allauth.account',
