@@ -11,8 +11,6 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from http import HTTPStatus
 from basket.models import Basket
-from users.models import CustomUser
-
 from yookassa import Payment
 
 
@@ -73,7 +71,7 @@ class OrderListView(TitleMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        user_id = self.kwargs.get('user_id')
+        user_id = self.request.user.id
         queryset = queryset.filter(user_id=user_id)
         return queryset
 

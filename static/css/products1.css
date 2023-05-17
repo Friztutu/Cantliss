@@ -1,0 +1,13 @@
+.slide {
+    width: 800px;
+    height: 500px;
+}
+
+.bg-color {
+    background: transparent;
+}
+
+.title {
+    font-size: 2em;
+    color: red;
+}

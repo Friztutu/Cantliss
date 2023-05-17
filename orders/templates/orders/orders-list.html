@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block css %}
-    <link href='{% static "/css/orders.css" %}' rel="stylesheet">
+    <link href='{% static "/css/orders5.css" %}' rel="stylesheet">
 {% endblock %}
 
 
@@ -21,7 +21,7 @@
                 <div class="orders mt-5">
                     <table class="table">
                         <thead>
-                        <tr class="table-light">
+                        <tr class="table-light text-color">
                             <th scope="col">#</th>
                             <th scope="col">Статус</th>
                             <th scope="col">Создан</th>
@@ -31,7 +31,7 @@
                         </thead>
                         <tbody>
                         {% for order in object_list %}
-                            <tr>
+                            <tr class="text-color">
                                 <th scope="row">{{ order.id }}</th>
                                 <td>{{ order.get_status_display }}</td>
                                 <td>{{ order.create_at|naturaltime }}</td>
