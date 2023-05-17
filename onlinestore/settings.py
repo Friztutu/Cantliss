@@ -17,7 +17,6 @@ import environ
 from yookassa import Configuration
 
 env = environ.Env(
-    # set casting, default value
     DEBUG=bool,
     SECRET_KEY=str,
     DOMAIN_NAME=str,
