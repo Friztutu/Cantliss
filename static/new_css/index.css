@@ -1,0 +1,9 @@
+.slide {
+    height: 500px;
+}
+
+.text {
+    font-size: 3em;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(0, 0, 0);
+}
