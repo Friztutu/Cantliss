@@ -14,7 +14,7 @@
   <body>
     <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary"  data-bs-theme="dark">
       <div class="container-fluid navbar">
-        <a class="navbar-brand padding" href="#">【₵₳₦₮Ⱡł₴₴】<sub>Store</sub></a>
+        <a class="navbar-brand padding" href="{% url 'products:index' %}">【₵₳₦₮Ⱡł₴₴】<sub>Store</sub></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,9 +32,9 @@
                   <ul class="dropdown-menu nav-menu">
                     <li><a class="dropdown-item" href="{% url 'users:profile' user.id %}">Личный кабинет</a></li>
                     <li><a class="dropdown-item" href="{% url 'orders:order_list' %}">Заказы</a></li>
-                    <li><a class="dropdown-item" href="#">Админ панель</a></li>
+                    <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админ панель</a></li>
                     <hr>
-                    <li><a class="dropdown-item" href="#">Выйти</a></li>
+                    <li><a class="dropdown-item" href="{% url 'users:logout' %}'">Выйти</a></li>
                   </ul>
                 </li>
               {% endif %}

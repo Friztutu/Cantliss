@@ -9,12 +9,11 @@
 {% block content %}
     <div class="container-fluid main">
       <ul class="nav flex-column filter">
-        <li class="nav-item">
-          <a class="nav-link link" aria-current="page" href="{% url 'products:catalog' 'male' %}">Мужское</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link link" href="{% url 'products:catalog' 'female' %}">Женское</a>
-        </li>
+        {% for gender in genders %}
+          <li class="nav-item">
+            <a class="nav-link link" aria-current="page" href="{% url 'products:catalog' gender.slug %}">{{ gender.name }}</a>
+          </li>
+        {% endfor %}
         <li class="nav-item">
           <a class="nav-link link" href="#">Магазины</a>
         </li>

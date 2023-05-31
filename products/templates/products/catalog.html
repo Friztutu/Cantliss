@@ -12,30 +12,26 @@
     <div class="container-fluid main">
       <ul class="nav flex-column filter">
         <li class="nav-item">
-          <a class="nav-link link" aria-current="page" href="catalog.html">Новинки</a>
+          <a class="nav-link link" aria-current="page" href="{% url 'products:catalog' request.resolver_match.kwargs.gender_slug %}">Сбросить фильтр</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link link" href="#">Одежда</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link link" href="#">Обувь</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link link" href="#">Аксессуары</a>
-        </li>
+        {% for category in categories %}
+          <li class="nav-item">
+            <a class="nav-link link" aria-current="page" href="{% url 'products:category' request.resolver_match.kwargs.gender_slug category.slug %}">{{ category.name }}</a>
+          </li>
+        {% endfor %}
       </ul>
         <div class="container">
           <div class="container text-center">
             <div class="row row-cols-4">
               {% for product in object_list %}
                 <div class="col-3">
-                  <a href="card.html" class="card-link">
+                  <a href="{% url 'products:card' product.slug %}" class="card-link">
                     <div class="card no-border" style="width: 18rem;">
                       <img src="{{ product.img.url }}" class="card-img-top product-card" alt="...">
                       <hr>
                       <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
-                        <p> {{ product.price }}</p>
+                        <p> {{ product.price|intcomma }}</p>
                       </div>
                     </div>
                   </a>

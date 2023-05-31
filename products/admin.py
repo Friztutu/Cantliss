@@ -7,8 +7,8 @@ from products.models import Product, ProductCategory, ProductGender
 
 @admin.register(Product)
 class AdminProduct(admin.ModelAdmin):
-    list_display = ('name', 'price', 'quantity', 'category', 'slug')
-    fields = ('name', 'description',  ('price', 'quantity'), 'category', 'img', 'slug')
+    list_display = ('name', 'price', 'quantity', 'gender', 'slug')
+    fields = ('name', 'description',  ('price', 'quantity'), ('category', 'gender'), 'img', 'slug')
     search_fields = ('name', )
     ordering = ('name', )
     prepopulated_fields = {'slug': ('name',)}
@@ -17,7 +17,7 @@ class AdminProduct(admin.ModelAdmin):
 @admin.register(ProductCategory)
 class AdminProductCategory(admin.ModelAdmin):
     list_display = ('name', 'slug')
-    fields = ('name', 'description', 'slug')
+    fields = ('name', 'slug')
     search_fields = ('name',)
     ordering = ('name', )
     prepopulated_fields = {'slug': ('name', )}
