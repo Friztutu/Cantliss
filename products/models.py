@@ -34,7 +34,7 @@ class Product(models.Model):
     category = models.ManyToManyField(to=ProductCategory)
     img = models.ImageField(upload_to=r'product_img')
     slug = models.SlugField(unique=True, verbose_name='URL')
-    gender = models.ForeignKey(to=ProductGender, on_delete=models.PROTECT)
+    gender = models.ManyToManyField(to=ProductGender)
 
     class Meta:
         verbose_name = 'Product'

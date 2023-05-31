@@ -20,8 +20,8 @@
                         </div>
                         <div class="col-lg-4">{{ basket.get_product_sum }}</div>
                         <div class="col-lg-4">
-                            <a href="{% url 'basket:basket_remove' user.id %}">
-                                <i class="fas fa-trash"></i>
+                            <a href="{% url 'basket:basket_remove' basket.id %}" style="color: red; text-decoration: none;">
+                                Удалить
                             </a>
                         </div>
                     </div>

@@ -1,0 +1,44 @@
+.card-link {
+    text-decoration: none;
+    color: black;
+}
+
+.product-card {
+    width: 18 rem;
+    height: 18 rem;
+}
+
+.paginator {
+    width: 280px;
+    padding: 10px;
+    margin: 30px auto;
+    white-space: nowrap;
+    background: #ecf0f1;
+}
+
+.paginator a,
+.paginator span {
+    display: inline-block;
+    min-width: 20px;
+    height: 40px;
+    padding: 0 10px;
+    line-height: 40px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    background: #95a5a6;
+}
+
+.paginator .current {
+    background-color: #16a085;
+}
+
+.paginator .disabled {
+    opacity: 0.3;
+}
+
+.paginator a:hover {
+    background-color: #2ecc71;
+}
