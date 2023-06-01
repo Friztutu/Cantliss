@@ -252,3 +252,10 @@ CELERY_RESULT_BACKEND = f'redis://{REDIS_HOST}:{REDIS_PORT}'
 
 Configuration.account_id = env('yookassa_account_id')
 Configuration.secret_key = env('yookassa_secret_key')
+
+# Django REST framework
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 16
+}
