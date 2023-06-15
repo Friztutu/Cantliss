@@ -5,40 +5,40 @@
 
 
 {% block css %}
-    <link rel="stylesheet" href='{% static "new_css/catalog2.css" %}'>
+    <link rel="stylesheet" href='{% static "css/index10.css" %}'>
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid main">
-      <ul class="nav flex-column filter">
-        <li class="nav-item">
-          <a class="nav-link link" aria-current="page" href="{% url 'products:catalog' request.resolver_match.kwargs.gender_slug %}">Сбросить фильтр</a>
-        </li>
-        {% for category in categories %}
-          <li class="nav-item">
-            <a class="nav-link link" aria-current="page" href="{% url 'products:category' request.resolver_match.kwargs.gender_slug category.slug %}">{{ category.name }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-        <div class="container">
-          <div class="container text-center">
-            <div class="row row-cols-4">
-              {% for product in object_list %}
-                <div class="col-3">
-                  <a href="{% url 'products:card' product.slug %}" class="card-link">
-                    <div class="card no-border" style="width: 18rem;">
-                      <img src="{{ product.img.url }}" class="card-img-top product-card" alt="...">
-                      <hr>
-                      <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p> {{ product.price|intcomma }}</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 col-xxl-3 mt-5">
+          <ul class="gender-list">
+            <li class="nav-item">
+              <a class="nav-link gender-link" aria-current="page" href="{% url 'products:catalog' request.resolver_match.kwargs.gender_slug %}">Сбросить фильтр</a>
+            </li>
+            {% for category in categories %}
+              <li class="nav-item">
+                <a class="nav-link mt-3 gender-link" aria-current="page" href="{% url 'products:category' request.resolver_match.kwargs.gender_slug category.slug %}">{{ category.name }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-9 col-xxl-9 mt-5">
+          <div class="row justify-content-end">
+            {% for product in object_list %}
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-5">
+                <a href="{% url 'products:card' product.slug %}" style="text-decoration: none;">
+                  <div class="card" style="width: 100%; border: none;">
+                    <img src="{{ product.img.url }}" class="card-img-top" alt="...">
+                    <hr>
+                    <h5 class="card-title" style="align-self: center;">{{ product.name }}</h5>
+                    <p style="align-self: center;">{{ product.price|intcomma }}</p>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
           </div>
         </div>
       </div>
+    </div>
 {% endblock %}

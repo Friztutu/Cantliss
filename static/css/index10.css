@@ -1,0 +1,20 @@
+.gender-link {
+    font-size: 100%;
+}
+
+.gender-link:hover{
+    color: red;
+}
+
+.gender-list {
+    list-style: none;
+    position: fixed;
+    margin-top: 5em;
+    display: block;
+}
+
+@media (min-width:  0px) and (max-width: 580px){
+    .gender-link {
+        font-size: 0.6em;
+    }
+}
