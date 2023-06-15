@@ -7,19 +7,22 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid main">
+    <div class="container-fluid main mt-5">
       <div class="container text-center">
-        <div class="row row-cols-2">
-          <div class="col">
-            <p style="font-size: 2.5em;">Профиль</p>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+            <h4 class="mt-5">Профиль</h4>
             <form action="{% url 'users:profile' user.id %}" method="post">
               {% csrf_token %}
-              <div class="input-group">
-                <span class="input-group-text">Имя и Фамилия</span>
+              <div class="input-group mt-5">
+                <span class="input-group-text">Имя</span>
                 {{ form.first_name }}
+              </div>
+              <div class="input-group mt-3">
+                <span class="input-group-text">Фамилия</span>
                 {{ form.last_name }}
               </div>
-              <div class="input-group mb-3 mt-5">
+              <div class="input-group mb-3 mt-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Логин</span>
                 {{ form.username }}
               </div>
@@ -28,12 +31,11 @@
                 {{ form.email }}
               </div>
               <div class="col-lg-12" style="margin-top: 33px;">
-                <input class="btn btn-info btn-block" type="submit" value="Сохранить">
+                <input class="btn btn-info btn-block btn-sm" type="submit" value="Сохранить">
               </div>
             </form>
           </div>
-          <div class="col">
-            <p style="font-size: 2.5em;">Корзина</p>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 mt-5">
             {% include 'basket/basket.html' %}
           </div>
         </div>

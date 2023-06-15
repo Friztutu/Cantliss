@@ -20,7 +20,7 @@ class IndexView(TitleMixin, TemplateView):
 class CatalogView(TitleMixin, ListView):
     model = Product
     template_name = 'products/catalog.html'
-    paginate_by = 16
+    paginate_by = 20
     title = 'Каталог'
 
     def get_context_data(self, *, object_list=None, **kwargs):
