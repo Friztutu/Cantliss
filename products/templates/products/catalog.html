@@ -5,7 +5,7 @@
 
 
 {% block css %}
-    <link rel="stylesheet" href='{% static "css/index10.css" %}'>
+    <link rel="stylesheet" href='{% static "css/index11.css" %}'>
 {% endblock %}
 
 {% block content %}
@@ -28,7 +28,7 @@
           </ul>
         </div>
         <div class="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-9 col-xxl-9 mt-5">
-          <div class="row justify-content-end">
+          <div class="row">
             {% for product in object_list %}
               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-5">
                 <a href="{% url 'products:card' product.slug %}" style="text-decoration: none;">

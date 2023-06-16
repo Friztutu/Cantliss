@@ -26,11 +26,13 @@ class CatalogView(TitleMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CatalogView, self).get_context_data()
         categories = cache.get('categories')
+
         if categories:
             context['categories'] = ProductCategory.objects.all()
             cache.set('categories', context['categories'], 30)
         else:
             context['categories'] = categories
+
         context['categories'] = ProductCategory.objects.all()
         context['category_slug'] = self.kwargs.get('category_slug')
         return context

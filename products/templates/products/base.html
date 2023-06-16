@@ -41,6 +41,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item" href="{% url 'users:profile' user.id %}">Личный кабинет</a></li>
+                    <li><a class="dropdown-item" href="{% url 'basket:basket' user.id %}">Корзина</a></li>
                     <li><a class="dropdown-item" href="{% url 'orders:order_list' %}">Список заказов</a></li>
                     <li>
                       <hr class="dropdown-divider">
