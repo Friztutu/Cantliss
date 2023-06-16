@@ -39,7 +39,12 @@ class CatalogView(TitleMixin, ListView):
         queryset = super(CatalogView, self).get_queryset()
         category_slug = self.kwargs.get('category_slug')
         gender_slug = self.kwargs.get('gender_slug')
-        queryset = queryset.filter(category__slug=category_slug, gender__slug=gender_slug) if category_slug else queryset.filter(gender__slug=gender_slug)
+
+        if category_slug == 'not-available':
+            queryset = queryset.filter(quantity=0, gender__slug=gender_slug)
+        else:
+            queryset = queryset.filter(category__slug=category_slug, gender__slug=gender_slug) if category_slug else queryset.filter(gender__slug=gender_slug)
+
         return queryset
 
 

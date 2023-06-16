@@ -3,19 +3,32 @@
 {% load cache %}
 {% load humanize %}
 
+{% block css %}
+  <link href="{% static 'css/card.css' %}" rel="stylesheet" >
+{% endblock %}
+
 {% block content %}
     <div class="container">
-      <div class="row">
-        <div class="col-7 col-sm-8 col-md-9 col-lg-9 col-xl-9 col-xxl-9 mt-5">
+      <div class="row justify-content-between">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-5">
           <div class="container mt-5">
            <img src="{{ product.img.url }}" alt="" width="100%">
           </div>
         </div>
-        <div class="col-5 col-sm-4 col-md-3 col-lg-3 col-xl-3 col-xxl-3 mt-5">
-          <div class="container main">
-            <h5 class="mt-5" style="align-self: center;">{{ product.name }}</h5>
-            <p style="align-self: center;">{{ product.price|intcomma }} руб.</p>
-            <a href="{% url 'basket:basket_add' product.id %}" class="btn btn-dark btn-sm mt-5">В корзину</a>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-5">
+          <div class="container">
+            <p class="mt-5 product-title" style="align-self: center;">{{ product.name }}</p>
+            <hr>
+            <p class="mt-3 product-description-title">Описание: </p>
+            <p class="p-3 product-description"> {{ product.description }}</p>
+            <hr>
+            <p class="product-description-title"> Товаров в наличии: {{ product.quantity }}</p>
+            <p style="align-self: center;" class="product-description-title">{{ product.price|intcomma }} руб.</p>
+            {% if product.quantity != 0 %}
+              <a href="{% url 'basket:basket_add' product.id %}" class="btn btn-dark btn-sm mt-5 product-description-title">В корзину</a>
+            {% else %}
+              <p class="product-description-title">Товара нет в наличии, но он точно появится позже)</p>
+            {% endif %}
           </div>
         </div>
       </div>
