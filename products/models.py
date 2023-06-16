@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import CustomUser
+
 
 # Create your models here.
 class ProductGender(models.Model):
@@ -42,3 +44,8 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class FavoriteProduct(models.Model):
+    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE)

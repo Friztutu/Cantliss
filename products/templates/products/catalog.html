@@ -22,7 +22,7 @@
               </li>
             {% endfor %}
             <hr>
-            <li class="nav-link mt-3 gender-link">
+            <li class="nav-link mt-3">
               <a class="nav-link mt-3 gender-link" aria-current="page" href="{% url 'products:category' request.resolver_match.kwargs.gender_slug 'not-available' %}">Нет в наличии</a>
             </li>
           </ul>

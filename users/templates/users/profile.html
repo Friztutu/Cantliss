@@ -3,7 +3,8 @@
 
 
 {% block css %}
-    <link rel="stylesheet" href='{% static "new_css/index.css" %}'>
+    <link rel="stylesheet" href='{% static "css/index11.css" %}'>
+    <link href="{% static 'css/card.css' %}" rel="stylesheet" >
 {% endblock %}
 
 {% block content %}
@@ -36,7 +37,43 @@
             </form>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 mt-5">
-            {% include 'basket/basket.html' %}
+            <h4 class="mt-5">Избранное</h4>
+            {% if favorites %}
+              {% for favorite in favorites %}
+                <div class="row text-center">
+                  <div class="col-6 mt-5">
+                    <img src="{{ favorite.product.img.url }}" width="100%">
+                  </div>
+                  <div class="col-6 text-center">
+                    <div class="row">
+                      <div class="col-12 mt-5">
+                        <p class="product-description-title">Название: {{ favorite.product.name }}</p>
+                        <p class="product-description">Цена: {{ favorite.product.price }} руб.</p>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                            <a type="button" class="btn btn-success btn-sm product-description" href="{% url 'basket:basket_add' favorite.product.id %}">В корзину</a>
+                        </div>
+                        <div class="col-6">
+                            <a type="button" class="btn btn-danger btn-sm product-description" href="{% url 'products:remove_favorite' favorite.id %}">Удалить</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+              {% endfor %}
+            {% else %}
+              <p>Изранных нету :(, но это поправимо, в каталоге точно будет что-нибудь, что вам по вкусу</p>
+                <div class="row">
+                    <div class="col-6">
+                        <a href="{% url 'products:catalog' 'male' %}" class="btn btn-info">Мужское</a>
+                    </div>
+                    <div class="col-6">
+                        <a href="{% url 'products:catalog' 'female' %}" class="btn btn-warning">Женское</a>
+                    </div>
+                </div>
+            {% endif %}
           </div>
         </div>
       </div>

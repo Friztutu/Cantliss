@@ -1,10 +1,11 @@
-
 from django.core.cache import cache
+from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
 from common.views import TitleMixin
-from products.models import Product, ProductCategory, ProductGender
+from products.models import Product, ProductCategory, ProductGender, FavoriteProduct
+from django.contrib.auth.decorators import login_required
 
 
 class IndexView(TitleMixin, TemplateView):
@@ -45,7 +46,9 @@ class CatalogView(TitleMixin, ListView):
         if category_slug == 'not-available':
             queryset = queryset.filter(quantity=0, gender__slug=gender_slug)
         else:
-            queryset = queryset.filter(category__slug=category_slug, gender__slug=gender_slug) if category_slug else queryset.filter(gender__slug=gender_slug)
+            queryset = queryset.filter(category__slug=category_slug,
+                                       gender__slug=gender_slug) if category_slug else queryset.filter(
+                gender__slug=gender_slug)
 
         return queryset
 
@@ -58,4 +61,20 @@ class CardView(TitleMixin, TemplateView):
         context = super().get_context_data()
         context['categories'] = ProductCategory.objects.all()
         context['product'] = Product.objects.get(slug=self.kwargs.get('product_slug'))
+        context['is_favorite'] = True if FavoriteProduct.objects.filter(product__slug=self.kwargs.get('product_slug'), user=self.request.user) else False
         return context
+
+
+@login_required
+def add_favorite(request, product_id):
+    product = Product.objects.get(id=product_id)
+    FavoriteProduct.objects.create(user=request.user, product=product)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+@login_required
+def remove_favorite(request, favorite_id):
+    favorite = FavoriteProduct.objects.get(id=favorite_id)
+    if favorite:
+        favorite.delete()
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])

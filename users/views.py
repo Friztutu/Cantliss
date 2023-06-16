@@ -11,6 +11,8 @@ from common.views import TitleMixin
 from users.forms import UserLoginForm, UserProfileForm, UserRegistrationForm
 from users.models import CustomUser, EmailVerification
 
+from products.models import FavoriteProduct
+
 
 class UserRegistrationView(TitleMixin, SuccessMessageMixin, CreateView):
     model = CustomUser
@@ -26,6 +28,11 @@ class UserProfileView(TitleMixin, UpdateView):
     template_name = 'users/profile.html'
     form_class = UserProfileForm
     title = 'Профиль'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['favorites'] = FavoriteProduct.objects.filter(user_id=self.request.user.id)
+        return context
 
     def get(self, request, *args, **kwargs):
         self.kwargs['pk'] = request.user.id
