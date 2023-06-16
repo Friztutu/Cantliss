@@ -7,13 +7,13 @@
 {% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/index10.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index11.css' %}">
 {% endblock %}
 
 {% block content %}
     <div class="container">
       <div class="row">
-        <div class="col-3 col-md-3 col-lg-3 mt-5">
+        <div class="col-3 col-md-3 col-lg-2 mt-5">
           <ul class="gender-list">
             {% for gender in genders %}
               <li class="nav-item">
@@ -25,7 +25,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-9 col-md-9 col-lg-9">
+        <div class="col-9 col-md-9 col-lg-10">
           <div class="container  mt-5 pt-5">
             <img src='{% static "/groups_image/1368020936_235070991.jpg" %}' alt="" style="width: 100%;">
           </div>
@@ -33,48 +33,30 @@
             <h3> Одежда для тех кому нравятся</h3>
           </div>
           <div class="row justify-content-between">
-            <div class="col-8 col-md-8 col-lg-8 mt-5">
-              <div class="container">
-                <video src='{% static "/groups_image/video1.mp4" %}' muted="muted" loop="loop" autoplay="autoplay" width="100%"></video>
-              </div>
+            <div class="col-6 col-md-6 col-lg-6 mt-5">
+              <video src='{% static "/groups_image/video1.mp4" %}' muted="muted" loop="loop" autoplay="autoplay" width="100%"></video>
+            </div>
+            <div class="col-6 col-md-6 col-lg-6 mt-5">
+              <img src="{% static '/img/punks-not-dead.png' %}" width="100%">
+            </div>
+            <div class="col-6 col-md-6 col-lg-6 mt-5">
+              <img src="{% static '/img/rock.jpg' %}" width="100%">
+            </div>
+            <div class="col-6 col-md-6 col-lg-6 mt-5">
+              <video src='{% static "/groups_image/video2.mp4" %}' muted="muted" loop="loop" autoplay="autoplay" width="100%"></video>
+            </div>
+            <div class="col-6 col-md-6 col-lg-6 mt-5">
+              <img src='{% static "/groups_image/new.jpg" %}' alt="" width="100%">
+            </div>
+            <div class="col-6 col-md-6 col-lg-6 mt-5">
+              <img src="{% static '/img/youth.jpg' %}" width="100%">
             </div>
             <div class="col-4 col-md-4 col-lg-4 mt-5">
-              <div class="container text-center">
-                <h5>&lt;- Рейвы</h5>
-              </div>
+              <img src="{% static '/img/freedom_text.jpg' %}" width="100%">
             </div>
-            <div class="col-3 col-md-3 col-lg-3 mt-5">
-              <div class="container text-center p-2">
-                <h5>Рок и панк -&gt;</h5>
-              </div>
+            <div class="col-8 col-md-8 col-lg-8 mt-5">
+              <img src='{% static "/groups_image/freedom.jpg" %}' alt="" width="100%">
             </div>
-            <div class="col-9 col-md-9 col-lg-9 mt-5">
-              <div class="container">
-                <video src='{% static "/groups_image/video2.mp4" %}' muted="muted" loop="loop" autoplay="autoplay" width="100%"></video>
-              </div>
-            </div>
-            <div class="row justify-content-between">
-              <div class="col-8 col-md-8 col-lg-8 mt-5">
-                <div class="container">
-                  <img src='{% static "/groups_image/new.jpg" %}' alt="" width="100%">
-                </div>
-              </div>
-              <div class="col-4 col-md-4 col-lg-4 mt-5">
-                <div class="container text-center">
-                  <h5>&lt;- Молодость</h5>
-                </div>
-              </div>
-              <div class="col-4 col-md-4 col-lg-4 mt-5">
-                <div class="container text-center p-2">
-                  <h5>Свобода -&gt;</h5>
-                </div>
-              </div>
-              <div class="col-8 col-md-8 col-lg-8 mt-5">
-                <div class="container">
-                  <img src='{% static "/groups_image/freedom.jpg" %}' alt="" width="100%">
-                </div>
-              </div>
-          </div>
         </div>
       </div> 
     </div>  
