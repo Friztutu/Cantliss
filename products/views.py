@@ -2,6 +2,7 @@ from django.core.cache import cache
 from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
+from django.contrib import messages
 
 from common.views import TitleMixin
 from products.models import Product, ProductCategory, ProductGender, FavoriteProduct
@@ -61,7 +62,10 @@ class CardView(TitleMixin, TemplateView):
         context = super().get_context_data()
         context['categories'] = ProductCategory.objects.all()
         context['product'] = Product.objects.get(slug=self.kwargs.get('product_slug'))
-        context['is_favorite'] = True if FavoriteProduct.objects.filter(product__slug=self.kwargs.get('product_slug'), user=self.request.user) else False
+        
+        if self.request.user.id:
+            context['is_favorite'] = True if FavoriteProduct.objects.filter(product__slug=self.kwargs.get('product_slug'),
+                                                                        user=self.request.user) else False
         return context
 
 
@@ -69,6 +73,7 @@ class CardView(TitleMixin, TemplateView):
 def add_favorite(request, product_id):
     product = Product.objects.get(id=product_id)
     FavoriteProduct.objects.create(user=request.user, product=product)
+    messages.success(request, "Товар добавлен в избранное")
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 

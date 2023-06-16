@@ -8,6 +8,16 @@
 {% endblock %}
 
 {% block content %}
+    {% if messages %}
+      <div class="alert alert-success fade show" role="alert" style="margin-top: 50px;">
+              {% for message in messages %}
+                  {{ message }}
+              {% endfor %}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+    {% endif %}
     <div class="container">
       <div class="row justify-content-between">
         <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-5">

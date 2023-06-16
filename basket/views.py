@@ -3,6 +3,7 @@ from django.shortcuts import HttpResponseRedirect
 from django.views.generic.list import ListView
 from basket.models import Basket
 from products.models import Product
+from django.contrib import messages
 
 
 class BasketView(ListView):
@@ -31,12 +32,19 @@ def basket_add(request, product_id):
         basket.quantity += 1
         basket.save()
 
+    messages.success(request, "Товар добавлен в корзину")
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 @login_required
 def basket_remove(request, basket_id):
-    basket = Basket.objects.get(id=basket_id)
+    basket = Basket.objects.filter(id=basket_id)
+
+    if basket:
+        basket = basket[0]
+    else:
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
     if basket.quantity > 1:
         basket.quantity -= 1
         basket.save()
