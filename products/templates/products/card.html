@@ -49,6 +49,11 @@
                 </div>
             {% else %}
               <p class="product-description-title">Товара нет в наличии, но он точно появится позже)</p>
+              {% if not is_favorite %}
+                <a href="{% url 'products:add_favorite' product.id %}" class="btn btn-info btn-sm mt-5 product-description">В избранное</a>
+              {% else %}
+                <p class="product-description mt-5">Товар уже в избранном :)</p>
+              {% endif %}
             {% endif %}
           </div>
         </div>

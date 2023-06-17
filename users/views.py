@@ -53,7 +53,7 @@ class UserLoginView(TitleMixin, LoginView):
 
 class EmailVerificationView(TitleMixin, TemplateView):
     template_name = 'users/email_verification.html'
-    title = 'Store - Подтверждение электронной почты'
+    title = 'Подтверждение электронной почты'
 
     def get(self, request, *args, **kwargs):
         code = kwargs.get('code')
