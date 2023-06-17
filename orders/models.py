@@ -29,6 +29,11 @@ class Order(models.Model):
 
     def update_after_payment(self):
         baskets = Basket.objects.filter(user=self.user)
+
+        for basket in baskets:
+            basket.product.quantity -= 1
+            basket.product.save()
+
         self.status = self.PAID
         self.basket_history = {
             'items': [basket.get_json() for basket in baskets],
