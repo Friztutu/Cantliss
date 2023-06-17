@@ -57,6 +57,20 @@
             {% endif %}
           </div>
         </div>
+          <h3 class="mt-5 text-center">Посмотрите еще</h3>
+          <div class="row">
+              {% for another in anothers %}
+                {% if another.id != product.id %}
+                    <div class="col-12 col-sm-12 col-mb-6 col-lg-6 col-xl-4 col-xxl-3 mt-5 text-center mb-5">
+                        <a href="{% url 'products:card' request.resolver_match.kwargs.gender_slug another.slug %}" style="text-decoration: none; color: black;">
+                            <img src="{{ another.img.url }}" alt="" width="100%">
+                            <hr>
+                            <h5>{{ another.name }}</h5>
+                        </a>
+                    </div>
+                {% endif %}
+              {% endfor %}
+          </div>
       </div>
     </div>
 {% endblock %}

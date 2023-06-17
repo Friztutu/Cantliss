@@ -36,7 +36,7 @@
           <div class="row">
             {% for product in object_list %}
               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-5">
-                <a href="{% url 'products:card' product.slug %}" style="text-decoration: none;">
+                <a href="{% url 'products:card' request.resolver_match.kwargs.gender_slug product.slug %}" style="text-decoration: none;">
                   <div class="card" style="width: 100%; border: none;">
                     <img src="{{ product.img.url }}" class="card-img-top" alt="...">
                     <hr>

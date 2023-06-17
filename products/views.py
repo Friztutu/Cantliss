@@ -3,10 +3,13 @@ from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.contrib import messages
+from django.db.models import Q
 
 from common.views import TitleMixin
 from products.models import Product, ProductCategory, ProductGender, FavoriteProduct
 from django.contrib.auth.decorators import login_required
+
+from random import choices
 
 
 class IndexView(TitleMixin, TemplateView):
@@ -61,7 +64,9 @@ class CardView(TitleMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['categories'] = ProductCategory.objects.all()
-        context['product'] = Product.objects.get(slug=self.kwargs.get('product_slug'))
+        product = Product.objects.get(slug=self.kwargs.get('product_slug'))
+        context['product'] = product
+        context['anothers'] = set(choices(Product.objects.filter(gender__slug=self.kwargs.get('gender_slug')).exclude(quantity=0), k=4))
         
         if self.request.user.id:
             context['is_favorite'] = True if FavoriteProduct.objects.filter(product__slug=self.kwargs.get('product_slug'),
