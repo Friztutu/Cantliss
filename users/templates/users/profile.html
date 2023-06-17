@@ -29,15 +29,7 @@
             <h4 class="mt-5">Профиль</h4>
             <form action="{% url 'users:profile' user.id %}" method="post">
               {% csrf_token %}
-              <div class="input-group mt-5">
-                <span class="input-group-text">Имя</span>
-                {{ form.first_name }}
-              </div>
-              <div class="input-group mt-3">
-                <span class="input-group-text">Фамилия</span>
-                {{ form.last_name }}
-              </div>
-              <div class="input-group mb-3 mt-3">
+              <div class="input-group mb-3 mt-5">
                 <span class="input-group-text" id="inputGroup-sizing-default">Логин</span>
                 {{ form.username }}
               </div>

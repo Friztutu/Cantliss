@@ -23,14 +23,6 @@ class UserLoginForm(AuthenticationForm):
 
 
 class UserRegistrationForm(UserCreationForm):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4',
-                                                               'placeholder': 'Введите имя'
-                                                               }))
-
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4',
-                                                              'placeholder': 'Введите фамилию'
-                                                              }))
-
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4',
                                                              'placeholder': 'Введите имя пользователя'
                                                              }))
@@ -54,15 +46,13 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2')
 
 
 class UserProfileForm(UserChangeForm):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': True}))
     email = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': True}))
 
     class Meta:
         model = CustomUser
-        fields = ('first_name', 'last_name', 'username', 'email')
+        fields = ('username', 'email')
