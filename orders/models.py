@@ -31,7 +31,7 @@ class Order(models.Model):
         baskets = Basket.objects.filter(user=self.user)
 
         for basket in baskets:
-            basket.product.quantity -= 1
+            basket.product.quantity -= basket.quantity
             basket.product.save()
 
         self.status = self.PAID
