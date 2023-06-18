@@ -1,14 +1,14 @@
 from django.contrib import admin
 
-from products.models import Product, ProductCategory, ProductGender
+from products.models import Product, ProductCategory, ProductGender, TypeProduct
 
 # Register your models here.
 
 
 @admin.register(Product)
 class AdminProduct(admin.ModelAdmin):
-    list_display = ('name', 'price', 'quantity', 'slug')
-    fields = ('name', 'description',  ('price', 'quantity'), ('category', 'gender'), 'img', 'slug')
+    list_display = ('name', 'price', 'quantity', 'type', 'slug')
+    fields = ('name', 'description',  ('price', 'quantity'), ('gender', 'category', 'type'), 'img', 'slug')
     search_fields = ('name', )
     ordering = ('name', )
     prepopulated_fields = {'slug': ('name',)}
@@ -30,3 +30,12 @@ class AdminProductGender(admin.ModelAdmin):
     search_fields = ('name', )
     ordering = ('name', )
     prepopulated_fields = {'slug': ('name', )}
+
+
+@admin.register(TypeProduct)
+class AdminProductType(admin.ModelAdmin):
+    list_display = ('name', 'category')
+    fields = ('name', 'category', 'slug', 'gender')
+    search_fields = ('name', )
+    ordering = ('name', )
+    prepopulated_fields = {'slug': ('name',)}
