@@ -9,10 +9,11 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from yookassa import Payment
+from django.views.generic.edit import UpdateView
 
 from basket.models import Basket
 from common.views import TitleMixin
-from orders.forms import OrderCreationForm
+from orders.forms import OrderCreationForm, OrderEditForm
 from orders.models import Order
 
 
@@ -93,3 +94,11 @@ class OrderAdminListView(TitleMixin, ListView):
     model = Order
     queryset = Order.objects.all()
     title = 'Админ-Заказы'
+
+
+class OrderAdminCardView(TitleMixin, UpdateView):
+    model = Order
+    template_name = 'orders/order-admin-card.html'
+    form_class = OrderEditForm
+    title = 'Заказ'
+    success_url = reverse_lazy('orders:order_admin_list')

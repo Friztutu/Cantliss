@@ -23,8 +23,12 @@ class OrderCreationForm(forms.ModelForm):
 
 
 class OrderEditForm(forms.ModelForm):
-    status = forms.CharField()
+    status = forms.CharField(widget=forms.Select(choices=Order.STATUSES))
+    address = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': True}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': True}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': True}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': True}))
 
     class Meta:
         model = Order
-        fields = ('status', )
+        fields = ('first_name', 'last_name', 'address', 'email', 'status')

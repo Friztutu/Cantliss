@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import path
 
 from orders.views import (OrderCanceledView, OrderCreateView, OrderListView,
-                          OrderSuccessView, OrderView, OrderAdminListView)
+                          OrderSuccessView, OrderView, OrderAdminListView, OrderAdminCardView)
 
 app_name = 'orders'
 
@@ -13,4 +13,5 @@ urlpatterns = [
     path('success/<int:order_id>/', OrderSuccessView.as_view(), name='order_success'),
     path('canceled/', OrderCanceledView.as_view(), name='canceled'),
     path('order-admin-list/', login_required(OrderAdminListView.as_view()), name='order_admin_list'),
+    path('order-admin-card/<int:pk>/', login_required(OrderAdminCardView.as_view()), name='order_card_admin')
 ]
