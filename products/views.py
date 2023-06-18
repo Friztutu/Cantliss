@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.db.models import Q
 
 from common.views import TitleMixin
-from products.models import Product, ProductCategory, ProductGender, FavoriteProduct
+from products.models import Product, ProductCategory, ProductGender, FavoriteProduct, TypeProduct
 from django.contrib.auth.decorators import login_required
 
 from random import choices
@@ -28,8 +28,13 @@ class CatalogView(TitleMixin, ListView):
     paginate_by = 20
     title = 'Каталог'
 
+    def get_ordering(self):
+        ordering = self.request.GET.get('orderby')
+        return ordering
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CatalogView, self).get_context_data()
+
         categories = cache.get('categories')
 
         if categories:
@@ -40,12 +45,25 @@ class CatalogView(TitleMixin, ListView):
 
         context['categories'] = ProductCategory.objects.all()
         context['category_slug'] = self.kwargs.get('category_slug')
+
+        category_slug = self.kwargs.get('category_slug')
+        gender_slug = self.kwargs.get('gender_slug')
+
+        if category_slug:
+            context['types'] = TypeProduct.objects.filter(gender=None, category__slug=category_slug) | TypeProduct.objects.filter(gender__slug=gender_slug, category__slug=category_slug)
+        else:
+            context['types'] = False
+
         return context
 
     def get_queryset(self):
         queryset = super(CatalogView, self).get_queryset()
+
         category_slug = self.kwargs.get('category_slug')
         gender_slug = self.kwargs.get('gender_slug')
+        type_slug = self.kwargs.get('type_slug')
+
+        query = self.request.GET.get('q')
 
         if category_slug == 'not-available':
             queryset = queryset.filter(quantity=0, gender__slug=gender_slug)
@@ -53,6 +71,14 @@ class CatalogView(TitleMixin, ListView):
             queryset = queryset.filter(category__slug=category_slug,
                                        gender__slug=gender_slug) if category_slug else queryset.filter(
                 gender__slug=gender_slug)
+
+        if type_slug:
+            queryset = queryset.filter(type__slug=type_slug)
+
+        if query:
+            queryset = queryset.filter(
+                Q(name__icontains=query) | Q(description__icontains=query)
+            )
 
         return queryset
 
