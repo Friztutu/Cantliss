@@ -86,3 +86,10 @@ class OrderSuccessView(TitleMixin, TemplateView):
         order = Order.objects.get(id=self.kwargs.get('order_id'))
         order.update_after_payment()
         return super().get(request, *args, **kwargs)
+
+
+class OrderAdminListView(TitleMixin, ListView):
+    template_name = 'orders/order-admin-list.html'
+    model = Order
+    queryset = Order.objects.all()
+    title = 'Админ-Заказы'

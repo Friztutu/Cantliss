@@ -20,3 +20,11 @@ class OrderCreationForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ('first_name', 'last_name', 'email', 'address')
+
+
+class OrderEditForm(forms.ModelForm):
+    status = forms.CharField()
+
+    class Meta:
+        model = Order
+        fields = ('status', )

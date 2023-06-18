@@ -55,7 +55,13 @@
                   </ul>
                   {% if user.is_superuser %}
                     <li><hr></li>
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Админ-меню
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админ панель</a></li>
+                    <li><a class="dropdown-item mt-3" href="{% url 'orders:order_admin_list' %}">Админ-заказы</a></li>
+                  </ul>
                   {% endif %}
                 </li>
               {% endif %}
