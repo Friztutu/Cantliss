@@ -26,13 +26,9 @@ share/python-wheels/
 *.egg
 onlinestore/secret_key.py
 onlinestore/__pycache__
-products/migrations
 media/
 MANIFEST
-basket/migrations/
 .flake8
-products/fixtures
-users/fixtures
 
 
 # PyInstaller
@@ -169,6 +165,5 @@ cython_debug/
 .idea/
 
 # Migrations and other
-users/migrations
 onlinestore/__pycache__
 onlinestore/secret_key.py
