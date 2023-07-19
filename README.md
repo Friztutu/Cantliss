@@ -72,4 +72,4 @@ python manage.py runserver
 
 ## License
 
-Project Store is distributed under the MIT licence
+Project Cantliss is distributed under the MIT licence
